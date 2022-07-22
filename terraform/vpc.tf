@@ -1,21 +1,26 @@
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_service
-resource "google_project_service" "compute" {
-  service = "compute.googleapis.com"
+variable "project_id" {
+  description = "project id"
 }
 
-resource "google_project_service" "container" {
-  service = "container.googleapis.com"
+variable "region" {
+  description = "region"
 }
 
-resource "google_compute_network" "main" {
-  name                            = "main"
-  routing_mode                    = "REGIONAL"
-  auto_create_subnetworks         = false
-  mtu                             = 1460
-  delete_default_routes_on_create = false
+provider "google" {
+  project = var.project_id
+  region  = var.region
+}
 
-  depends_on = [
-    google_project_service.compute,
-    google_project_service.container
-  ]
+# VPC
+resource "google_compute_network" "vpc" {
+  name                    = "${var.project_id}-vpc"
+  auto_create_subnetworks = "false"
+}
+
+# Subnet
+resource "google_compute_subnetwork" "subnet" {
+  name          = "${var.project_id}-subnet"
+  region        = var.region
+  network       = google_compute_network.vpc.name
+  ip_cidr_range = "10.10.0.0/24"
 }

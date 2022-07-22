@@ -1,14 +1,10 @@
 terraform {
   required_providers {
     google = {
-      source = "hashicorp/google"
-      version = "4.29.0"
+      source  = "hashicorp/google"
+      version = "3.52.0"
     }
   }
-}
 
-provider "google" {
-  # Configuration options
-  project = "cloud-devops-leraning"
-  region  = "us-central1"
+  required_version = ">= 0.14"
 }
