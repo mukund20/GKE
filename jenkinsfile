@@ -2,7 +2,7 @@ pipeline {
   agent any 
     environment {
         registryCredential = 'dockerhub'
-        imageName = 'vithakur72/simplepy'
+        imageName = 'mukund20/python-app'
         dockerImage = ''
         }
     stages {
