@@ -1,2 +1,2 @@
-project_id = "REPLACE_ME"
+project_id = "cloud-devops-leraning"
 region     = "us-central1"
