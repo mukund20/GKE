@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-pythonclient-master
+  labels:
+    app: sample-pythonclient-master
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: sample-pythonclient-master
+  template:
+    metadata:
+      labels:
+        app: sample-pythonclient-master
+    spec:
+      containers:
+      - name: sample-pythonclient-container
+        image: mukund20/python-app:latest
+        ports:
+        - containerPort: 8082
