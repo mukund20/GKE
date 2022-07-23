@@ -42,7 +42,7 @@ pipeline {
                     }
             steps {
                 echo 'Get cluster credentials'
-                sh 'gcloud container clusters get-credentials my-testing-cluster --zone us-west1-a --project cloud-devops-leraning'
+                sh 'gcloud container clusters get-credentials cloud-devops-leraning-gke --region us-central1 --project cloud-devops-leraning'
                 sh "kubectl set image deployment/sample-pythonclient-master sample-pythonclient-container=${env.imageName}:${env.BUILD_ID}"
               }
             }       
